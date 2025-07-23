@@ -9,7 +9,7 @@ export const themeReducer = (state = initialState, action) => {
     case Theme:
       return {
         ...state,
-        isDarkMode: !state.isDarkMode
+        isDarkMode: action.data !== undefined ? action.data : !state.isDarkMode
       };
     default:
       return state;

@@ -7,4 +7,10 @@ export function setTheme(isDarkMode) {
     type: Theme,
     data: isDarkMode
   };
-};
+}
+
+export function toggleTheme() {
+  return {
+    type: Theme,
+  };
+}

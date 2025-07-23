@@ -7,11 +7,11 @@ import { themeReducer } from './ThemeReducer';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['themeReducer'],
+  whitelist: ['theme'],
 };
 
 const rootReducer = combineReducers({
-  themeReducer,
+  theme: themeReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

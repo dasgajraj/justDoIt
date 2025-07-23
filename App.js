@@ -1,20 +1,38 @@
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Platform, View, useColorScheme } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTheme } from './redux/Action';
+import { colors } from './common/colors';
+
+// Import your existing navigation
+import StackNavigator from './navigation/stackNavigaton';
 
 export default function App() {
+  const systemColorScheme = useColorScheme();
+  const { isDarkMode } = useSelector(state => state.theme);
+  const dispatch = useDispatch();
+  const theme = isDarkMode ? colors.dark : colors.light;
+
+  useEffect(() => {
+    if (systemColorScheme) {
+      dispatch(setTheme(systemColorScheme === 'dark'));
+    }
+  }, [systemColorScheme, dispatch]);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <View style={{ 
+        flex: 1, 
+        backgroundColor: theme.backgroundColor,
+        paddingTop: Platform.OS === 'android' ? 25 : 0 
+      }}>
+        <StatusBar 
+          style={isDarkMode ? "light" : "dark"} 
+        />
+        <StackNavigator />
+      </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
