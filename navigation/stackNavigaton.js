@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import GetStartedScreen from "../ui/GetStartedScreen";
+import LoadingScreen from "../ui/LoadingScreen";
 
 import MainStack from "./tabNavigation";
 
@@ -17,7 +17,7 @@ const StackNavigator = () => {
               }}
             >
                 {/* On Boarding */}
-                <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+                <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
                 {/* Main App with Tab Navigation */}
                 <Stack.Screen name="MainApp" component={MainStack} />
             </Stack.Navigator>
