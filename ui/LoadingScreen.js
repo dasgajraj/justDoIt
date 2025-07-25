@@ -54,7 +54,6 @@ const LoadingScreen = ({ navigation }) => {
     }
     
     const dotTimer = setTimeout(animateDots, 500)
-
     // Auto navigate to Home after 3 seconds
     const navigationTimer = setTimeout(() => {
       navigation.navigate('MainApp')
